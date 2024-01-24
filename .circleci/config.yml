@@ -10,7 +10,7 @@ jobs:
     steps:
       - checkout
       - k8s/install-kubectl
-      - run: curl https://kots.io/install | bash
+      - run: curl https://kots.io/install | REPL_USE_SUDO=y bash
       - run: kubectl kots version
 
 workflows:
