@@ -12,6 +12,14 @@ jobs:
       - k8s/install-kubectl
       - run: curl https://kots.io/install | REPL_USE_SUDO=y bash
       - run: kubectl kots version
+      - run:
+          name: downgrade KOTS to v1.65.0
+          # See https://docs.replicated.com/reference/kots-cli-getting-started#manually-download-and-install
+          command: |
+            curl -o kots_linux_amd64.tar.gz -L https://github.com/replicatedhq/kots/releases/download/v1.65.0/kots_linux_amd64.tar.gz
+            tar xvf kots_linux_amd64.tar.gz
+            sudo mv kots /usr/local/bin/kubectl-kots
+      - run: kubectl kots version
 
 workflows:
   main:
