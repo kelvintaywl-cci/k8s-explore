@@ -21,6 +21,9 @@ jobs:
             tar xvf kots_linux_amd64.tar.gz
             sudo mv kots /usr/local/bin/kubectl-kots
       - run: kubectl kots version
+      # to match KOTS CLI version
+      # https://docs.replicated.com/reference/kots-cli-admin-console-upgrade
+      - run: kubectl kots admin-console upgrade
 
 workflows:
   main:
