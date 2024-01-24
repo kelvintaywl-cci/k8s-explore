@@ -1,0 +1,19 @@
+version: 2.1
+
+orbs:
+  k8s: circleci/kubernetes@x.y.z
+
+jobs:
+  kots:
+    machine:
+      image: ubuntu-2004:current
+    steps:
+      - checkout
+      - k8s/install-kubectl
+      - run: curl https://kots.io/install | bash
+      - run: kubectl kots version
+
+workflows:
+  main:
+    jobs:
+      - kots
